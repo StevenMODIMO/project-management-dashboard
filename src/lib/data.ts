@@ -8,7 +8,7 @@ const navLinks: NavLinks[] = [
   {
     id: 1,
     title: "Features",
-    route: "features",
+    route: "#features",
   },
   {
     id: 2,
