@@ -1,5 +1,7 @@
+import LoginForm from "@/components/LoginForm";
+
 export default function Login() {
   return <main>
-    <h1>Log in Shit</h1>
+    <LoginForm />
   </main>;
 }

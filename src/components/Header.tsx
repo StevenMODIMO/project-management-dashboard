@@ -51,7 +51,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0.8, x: -1200 }}
             transition={{ ease: "easeInOut" }}
-            className="absolute left-0 top-0 w-full h-full bg-gray-100/40 sm:hidden"
+            className="fixed left-0 top-0 w-full h-full bg-gray-100/40 sm:hidden"
             onClick={() => setToggleMenu(false)}
           >
             <div
