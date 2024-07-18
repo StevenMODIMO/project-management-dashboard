@@ -51,7 +51,7 @@ export default function SignupForm() {
             <p>Github</p>
           </div>
         </section>
-        <Link href="/signup" className="text-sm p-2 text-[#76E309] font-bold">
+        <Link href="/login" className="text-sm p-2 text-[#76E309] font-bold">
           Log in to continue
         </Link>
       </motion.form>

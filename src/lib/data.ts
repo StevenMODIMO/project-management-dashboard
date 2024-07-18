@@ -10,6 +10,56 @@ interface CookieData {
   description: string;
 }
 
+interface FeatureDetail {
+  id: number;
+  feature: string;
+}
+
+interface FeaturesTypes {
+  id: number;
+  title: string;
+  features: FeatureDetail[];
+}
+
+const features: FeaturesTypes[] = [
+  {
+    id: 1,
+    title: "Task management",
+    features: [
+      { id: 1, feature: "Create, assign, and prioritize tasks" },
+      { id: 2, feature: "Track progress with status updates" },
+      { id: 3, feature: "Set due dates and reminders" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Collaboration tools",
+    features: [
+      { id: 1, feature: "Team chat and messaging" },
+      { id: 2, feature: "File sharing and storage" },
+      { id: 3, feature: "Commenting on tasks and projects" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Project planning",
+    features: [
+      { id: 1, feature: "Gantt charts and timeline" },
+      { id: 2, feature: "Milestones and deadlines" },
+      { id: 3, feature: "Resource allocation" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Reporting and Analytics",
+    features: [
+      { id: 1, feature: "Customizable reports" },
+      { id: 2, feature: "Dashboards with key metrics" },
+      { id: 3, feature: "Performance analytics" },
+    ],
+  },
+];
+
 const navLinks: NavLinks[] = [
   {
     id: 1,
@@ -117,4 +167,4 @@ const cookieData: CookieData[] = [
   },
 ];
 
-export { navLinks, footerLinks, cookieData };
+export { navLinks, footerLinks, cookieData, features };
