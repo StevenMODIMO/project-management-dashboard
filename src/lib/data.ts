@@ -21,6 +21,113 @@ interface FeaturesTypes {
   features: FeatureDetail[];
 }
 
+interface PricingTypes {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  features: FeatureDetail[];
+}
+
+const pricing: PricingTypes[] = [
+  {
+    id: 1,
+    title: "Basic",
+    description: "For small teams and exploration of the platform.",
+    price: 0,
+    features: [
+      {
+        id: 1,
+        feature: "Basic support",
+      },
+      {
+        id: 2,
+        feature: "Basic Analytics",
+      },
+      {
+        id: 3,
+        feature: "Usage limits",
+      },
+      {
+        id: 4,
+        feature: "Access to basic templates",
+      },
+      {
+        id: 5,
+        feature: "Free trials feature access",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Premium",
+    description: "For small teams, individuals and large teams.",
+    price: 10,
+    features: [
+      {
+        id: 1,
+        feature: "Basic support",
+      },
+      {
+        id: 2,
+        feature: "Advanced Analytics",
+      },
+      {
+        id: 3,
+        feature: "Custom limits",
+      },
+      {
+        id: 4,
+        feature: "Access to advanced templates",
+      },
+      {
+        id: 5,
+        feature: "Limited AI access",
+      },
+      {
+        id: 6,
+        feature: "Custom branding",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Enterprise",
+    description: "For companies looking to upscale their effort.",
+    price: 25,
+    features: [
+      {
+        id: 1,
+        feature: "Basic support",
+      },
+      {
+        id: 2,
+        feature: "Advanced Analytics",
+      },
+      {
+        id: 3,
+        feature: "No limits",
+      },
+      {
+        id: 4,
+        feature: "Access to advanced templates",
+      },
+      {
+        id: 5,
+        feature: "Consulting services",
+      },
+      {
+        id: 6,
+        feature: "Custom features",
+      },
+      {
+        id: 7,
+        feature: "Unlimited AI access",
+      },
+    ],
+  },
+];
+
 const features: FeaturesTypes[] = [
   {
     id: 1,
@@ -167,4 +274,4 @@ const cookieData: CookieData[] = [
   },
 ];
 
-export { navLinks, footerLinks, cookieData, features };
+export { navLinks, footerLinks, cookieData, features, pricing };

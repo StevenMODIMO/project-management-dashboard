@@ -7,8 +7,11 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Project Management Dashboard",
-  description: "Awesome tool for high achievers.",
+  title: {
+    default: "Project Management Dashboard",
+    template: "%s - PMD",
+  },
+  description: "Awesome tooling in one box.",
 };
 
 export default function RootLayout({
@@ -21,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
