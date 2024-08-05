@@ -9,7 +9,7 @@ export default function Footer() {
       <section className="flex flex-col gap-3 p-4">
         <div className="text-sm grid grid-cols-2 w-fit">
           {footerLinks.map(({ id, title, route }) => {
-            return <div>{title}</div>;
+            return <div key={id}>{title}</div>;
           })}
         </div>
         <section className="flex gap-4">
