@@ -20,6 +20,7 @@ export default function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,13 +65,30 @@ export default function SignupForm() {
         </header>
         <label
           htmlFor="email"
-          className="text-gray-500 text-sm mt-3 flex gap-2 items-center"
+          className="text-gray-500 text-sm mt-3 flex gap-2 justify-between"
         >
           <div className="flex items-center gap-2">
             <MdOutlineMailOutline />
             Email
           </div>
-          <PiInfoThin />
+          <section className="relative">
+            <PiInfoThin
+              onMouseEnter={() => setShowInfo(true)}
+              onMouseLeave={() => setShowInfo(false)}
+            />
+            <AnimatePresence>
+              {showInfo && (
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0.5 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0.5 }}
+                  className="p-1 text-center text-xs w-32 rounded-md text-white bg-[#6EC616] absolute top-2 left-6"
+                >
+                  This is the email address associated with your PMD account.
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </section>
         </label>
         <input
           id="email"
@@ -133,8 +151,8 @@ export default function SignupForm() {
           </header>
         </section>
       </form>
-      {error && (
-        <AnimatePresence>
+      <AnimatePresence>
+        {error && (
           <motion.div
             initial={{ scale: 0.7, opacity: 0.7 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -145,8 +163,8 @@ export default function SignupForm() {
             <MdErrorOutline className="text-2xl" />
             <h3>{error}</h3>
           </motion.div>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </main>
   );
 }
