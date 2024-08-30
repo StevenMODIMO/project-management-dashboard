@@ -1,3 +1,5 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import LoginForm from "@/components/LoginForm";
 
 export const metadata = {
@@ -5,7 +7,10 @@ export const metadata = {
   description: "Sign in route for users with account.",
 };
 
-export default function Login() {
+export default async function Login() {
+  const session = await getServerSession();
+  if (session) redirect("/profile");
+
   return (
     <main>
       <LoginForm />

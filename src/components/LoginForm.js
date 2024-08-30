@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {  FaGithub, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaGithub, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter, FaRegCircleUser } from "react-icons/fa6";
 import { PiInfoThin } from "react-icons/pi";
@@ -11,6 +11,8 @@ import {
   MdOutlineMailOutline,
 } from "react-icons/md";
 import { FaHourglassStart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -19,11 +21,37 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: "http://localhost:3000/crud",
+    });
+
+    if (res.error) {
+      setError(res.error);
+      setEmail("");
+      setPassword("");
+      setLoading(false);
+    } else {
+      setEmail("");
+      setPassword("");
+      setLoading(false);
+      router.push("/profile");
+    }
+  };
 
   return (
     <main className="flex">
       <div className="bg-[#6EC616] h-screen w-[50%]"></div>
       <form
+        onSubmit={handleSubmit}
         onFocus={() => setError(null)}
         className="w-fit h-fit mx-auto mt-[7%] flex flex-col gap-3 p-4 shadow-md rounded-md"
       >

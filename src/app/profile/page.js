@@ -1,4 +1,11 @@
-export default function Profile() {
+import { getServerSession } from "next-auth";
+
+export const metadata = {
+  title: "Profile",
+  description: "Authenticated user profile page.",
+};
+
+export default async function Profile() {
   return (
     <main>
       <header>
