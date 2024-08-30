@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
-import { signIn } from 'next-auth/react'
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCamera, FaGithub, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import {  FaGithub, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter, FaRegCircleUser } from "react-icons/fa6";
 import { PiInfoThin } from "react-icons/pi";
@@ -13,56 +12,24 @@ import {
 } from "react-icons/md";
 import { FaHourglassStart } from "react-icons/fa";
 
-export default function SignupForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("image", image);
-    formData.append("email", email);
-    formData.append("password", password);
-
-    const response = await fetch("http://localhost:3000/api/auth/signup", {
-      method: "POST",
-      body: formData,
-    });
-
-    const json = await response.json();
-
-    if (json.error) {
-      setError(json.error);
-      setEmail("");
-      setImage("");
-      setPassword("");
-      setLoading(false);
-    } else {
-      setEmail("");
-      setImage("");
-      setPassword("");
-      setError(null);
-      setLoading(false);
-    }
-  };
   return (
     <main className="flex">
       <div className="bg-[#6EC616] h-screen w-[50%]"></div>
       <form
         onFocus={() => setError(null)}
-        onSubmit={handleSubmit}
         className="w-fit h-fit mx-auto mt-[7%] flex flex-col gap-3 p-4 shadow-md rounded-md"
       >
         <header className="text-2xl font-bold text-gray-500 flex items-center gap-2">
-          <FaHourglassStart />
-          <h1>Get started now.</h1>
+          <FaHourglassStart className="rotate-180" />
+          <h1>Sign in to continue.</h1>
         </header>
         <label
           htmlFor="email"
@@ -120,27 +87,11 @@ export default function SignupForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="#$%Hunvho1234"
         />
-        <div className="text-gray-500 text-sm flex items-center gap-2">
-          <FaRegCircleUser />
-          Display Image (optional)
-        </div>
-        <label
-          htmlFor="avatar"
-          className="w-12 h-12 rounded-full bg-[#6EC616] cursor-pointer flex items-center justify-center"
-        >
-          <FaCamera className="text-white" />
-        </label>
-        <input
-          id="avatar"
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-          className="hidden"
-        />
         <button className="bg-[#6EC616] w-36 text-white p-2 rounded-md">
           {loading ? (
             <div className="animate-spin h-6 w-6 mx-auto text-center border-4 border-dotted border-white rounded-full"></div>
           ) : (
-            "Create account"
+            "Sign In"
           )}
         </button>
         <section>

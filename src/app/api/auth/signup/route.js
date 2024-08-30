@@ -3,6 +3,7 @@ import { dbConnect } from "@/lib/db";
 import User from "@/models/User";
 import fs from "fs";
 import path from "path";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req) {
   const formdata = await req.formData();
@@ -12,12 +13,10 @@ export async function POST(req) {
   await dbConnect();
   let imageUrl = "";
 
-  // Ensure the file is a Blob and has a name
   if (image && image instanceof Blob) {
-    const imageName = image.name;
+    const imageName = uuidv4() + path.extname(image.name);
     const uploadPath = path.join(process.cwd(), "public", "uploads", imageName);
 
-    // Create 'uploads' directory if it doesn't exist
     const uploadsDir = path.join(process.cwd(), "public", "uploads");
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir, { recursive: true });
