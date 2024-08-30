@@ -31,7 +31,7 @@ export default function SignupForm() {
     formData.append("email", email);
     formData.append("password", password);
 
-    const response = await fetch("http://localhost:3000/api/auth/signup", {
+    const response = await fetch("/api/auth/signup", {
       method: "POST",
       body: formData,
     });

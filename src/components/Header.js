@@ -38,7 +38,7 @@ export default function Header() {
               <main className='flex gap-2 items-center'>
                 <div onClick={() => signOut()}>Logout</div>
                 <Image
-                  src={data.user?.imageUrl}
+                  src={data.user?.image}
                   alt="profile_avatar"
                   width={30}
                   height={30}

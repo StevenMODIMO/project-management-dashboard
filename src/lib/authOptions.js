@@ -10,13 +10,12 @@ export const authOptions = {
       async authorize(credentials) {
         const { email, password } = credentials;
         await dbConnect();
-        // Fetch the user including the imageUrl field
         const user = await User.login(email, password);
         if (user) {
           return {
             id: user.id,
             email: user.email,
-            imageUrl: user.imageUrl, // Include imageUrl
+            image: user.imageUrl,
           };
         }
         return null;
@@ -32,7 +31,7 @@ export const authOptions = {
         return {
           ...token,
           id: user.id,
-          imageUrl: user.imageUrl,
+          image: user.imageUrl,
         };
       }
       return token;
@@ -42,7 +41,7 @@ export const authOptions = {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
+          id: token.sub,
           imageUrl: token.imageUrl,
         },
       };
