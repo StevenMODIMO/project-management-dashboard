@@ -11,7 +11,6 @@ export default function Header() {
   const pathname = usePathname();
   const { data, status } = useSession();
   const isAuth = status === "authenticated";
-  console.log(data);
   const hideLinks = pathname === "/signup" || pathname === "/login";
   const filteredLinks = isAuth
     ? navLinks.filter((link) => link.route === "/profile")

@@ -13,6 +13,7 @@ import {
 import { FaHourglassStart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ export default function LoginForm() {
       email,
       password,
       redirect: false,
-      callbackUrl: "http://localhost:3000/crud",
+      callbackUrl: "http://localhost:3000/profile",
     });
 
     if (res.error) {
@@ -75,9 +76,9 @@ export default function LoginForm() {
             <AnimatePresence>
               {showInfo && (
                 <motion.div
-                  initial={{ scale: 0.8, opacity: 0.5 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0.5 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
                   className="p-1 text-center text-xs w-32 rounded-md text-white bg-[#6EC616] absolute top-2 left-6"
                 >
                   This is the email address associated with your PMD account.
@@ -124,7 +125,7 @@ export default function LoginForm() {
         </button>
         <section>
           <header className="text-gray-500 cursor-pointer">
-            <h4 className="">Or continue with</h4>
+            <h4 className="text-sm">Or continue with</h4>
             <div className="flex gap-3 mt-2">
               <FcGoogle className="text-4xl shadow-md p-2 rounded-md" />
               <FaGithub className="text-4xl shadow-md p-2 rounded-md" />
@@ -132,14 +133,19 @@ export default function LoginForm() {
             </div>
           </header>
         </section>
+        <div className="flex gap-2 text-sm text-gray-500 mt-2">
+          <h4>Don't have an account ?</h4>
+          <Link href="/signup" className="text-[#6EC616]">
+            Sign up now
+          </Link>
+        </div>
       </form>
       <AnimatePresence>
         {error && (
           <motion.div
-            initial={{ scale: 0.7, opacity: 0.7 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            exit={{ scale: 0.7, opacity: 0.7 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
             className="cursor-pointer bg-[#a8e66b] p-2 rounded-md text-white absolute right-4 top-4 w-fit flex justify-center items-center gap-2"
           >
             <MdErrorOutline className="text-2xl" />
