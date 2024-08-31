@@ -2,15 +2,15 @@ import { Schema, model, models } from "mongoose";
 import { hash, genSalt, compare } from "bcrypt";
 import { isEmail, isStrongPassword } from "validator";
 
-
 const userSchema = new Schema({
+  name: String,
   email: String,
   password: String,
   imageUrl: String,
 });
 
-userSchema.statics.signup = async function (email, password, imageUrl) {
-  if (!email || !password) {
+userSchema.statics.signup = async function (name, email, password, imageUrl) {
+  if (!name || !email || !password) {
     throw Error("All fields must be filled.");
   }
 
@@ -31,7 +31,7 @@ userSchema.statics.signup = async function (email, password, imageUrl) {
   const salt = await genSalt(10);
   const hashed = await hash(password, salt);
 
-  const user = await this.create({ email, password: hashed, imageUrl });
+  const user = await this.create({ name, email, password: hashed, imageUrl });
 
   return user;
 };

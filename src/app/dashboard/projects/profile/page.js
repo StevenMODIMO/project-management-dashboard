@@ -11,7 +11,8 @@ export default async function Profile() {
   return (
     <main>
       <header>
-        <h1>Welcome @, {session.user?.email}</h1>
+        <div>Welcome @, {session.user?.name}</div>
+        <h1>{session.user?.email}</h1>
         <Image
           src={session.user?.image}
           alt="image"
@@ -19,7 +20,6 @@ export default async function Profile() {
           height={50}
           className="rounded-full"
         />
-        <div>{session.user?.id}</div>
       </header>
     </main>
   );

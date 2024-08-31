@@ -3,6 +3,9 @@ import User from "@/models/User";
 import { dbConnect } from "./db";
 
 export const authOptions = {
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       type: "credentials",
@@ -13,7 +16,8 @@ export const authOptions = {
         const user = await User.login(email, password);
         if (user) {
           return {
-            id: user.id,
+            id: user._id,
+            name: user.name,
             email: user.email,
             image: user.imageUrl,
           };
@@ -41,7 +45,6 @@ export const authOptions = {
         ...session,
         user: {
           ...session.user,
-          id: token.sub,
           imageUrl: token.imageUrl,
         },
       };

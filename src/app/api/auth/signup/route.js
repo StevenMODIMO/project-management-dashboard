@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req) {
   const formdata = await req.formData();
+  const name = formdata.get("name");
   const email = formdata.get("email");
   const password = formdata.get("password");
   const image = formdata.get("image");
@@ -22,7 +23,6 @@ export async function POST(req) {
       fs.mkdirSync(uploadsDir, { recursive: true });
     }
 
-    // Convert Blob to Buffer and save the file
     const arrayBuffer = await image.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
@@ -32,7 +32,7 @@ export async function POST(req) {
   }
 
   try {
-    const info = await User.signup(email, password, imageUrl);
+    const info = await User.signup(name, email, password, imageUrl);
     return NextResponse.json(info);
   } catch (error) {
     return NextResponse.json({ error: error.message });

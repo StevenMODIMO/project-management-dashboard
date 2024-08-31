@@ -11,12 +11,14 @@ import {
   MdErrorOutline,
   MdOutlineKey,
   MdOutlineMailOutline,
+  MdDriveFileRenameOutline
 } from "react-icons/md";
 import { FaHourglassStart } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null); // Changed from "" to null
@@ -32,6 +34,7 @@ export default function SignupForm() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData();
+    formData.append("name", name);
     formData.append("image", image);
     formData.append("email", email);
     formData.append("password", password);
@@ -45,7 +48,7 @@ export default function SignupForm() {
 
     if (json.error) {
       setError(json.error);
-      // Reset states including image and imagePreview
+      setName("");
       setEmail("");
       setPassword("");
       setImage(null);
@@ -53,6 +56,7 @@ export default function SignupForm() {
       setLoading(false);
       setInputKey(Date.now()); // Update key to force re-render of input
     } else {
+      setName("");
       setEmail("");
       setPassword("");
       setImage(null);
@@ -63,7 +67,7 @@ export default function SignupForm() {
         email,
         password,
         redirect: false,
-        callbackUrl: "http://localhost:3000/profile",
+        callbackUrl: "http://localhost:3000/dashboard/profile",
       });
       router.push("/profile");
     }
@@ -89,12 +93,28 @@ export default function SignupForm() {
       <form
         onFocus={() => setError(null)}
         onSubmit={handleSubmit}
-        className="w-fit h-fit mx-auto mt-[7%] flex flex-col gap-3 p-4 shadow-md rounded-md"
+        className="w-fit h-fit mx-auto mt-[3%] flex flex-col gap-3 p-4 shadow-md rounded-md"
       >
         <header className="text-2xl font-bold text-gray-500 flex items-center gap-2">
           <FaHourglassStart />
           <h1>Get started now.</h1>
         </header>
+        <label
+          htmlFor="name"
+          className="text-gray-500 text-sm mt-3 flex gap-2 justify-between"
+        >
+          <div className="flex items-center gap-2">
+            <MdDriveFileRenameOutline />
+            Name
+          </div>
+        </label>
+        <input
+          id="name"
+          className="outline-none shadow-md p-2 w-96 rounded-md text-gray-500"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Jane Doe"
+        />
         <label
           htmlFor="email"
           className="text-gray-500 text-sm mt-3 flex gap-2 justify-between"

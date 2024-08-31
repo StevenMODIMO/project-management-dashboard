@@ -13,13 +13,13 @@ export default function Header() {
   const isAuth = status === "authenticated";
   const hideLinks = pathname === "/signup" || pathname === "/login";
   const filteredLinks = isAuth
-    ? navLinks.filter((link) => link.route === "/profile")
+    ? navLinks.filter((link) => link.route === "/dashboard")
     : navLinks;
 
   return (
     <>
       {!hideLinks && (
-        <main className="flex justify-between p-4 cursor-pointer text-gray-500">
+        <main className="flex justify-between p-4 cursor-pointer text-gray-500 shadow rounded-b-md">
           <header>
             <Link href="/">
               <Image src={logo} alt="logo" width={80} height={80} />
