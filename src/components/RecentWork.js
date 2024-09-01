@@ -25,7 +25,7 @@ export default function RecentWork() {
           by finding the project your team is working on.
         </p>
         <Link
-          href="/dashboard/project"
+          href="/dashboard/projects"
           className="bg-[#6EC616] rounded p-1 text-white text-sm"
         >
           View Projects

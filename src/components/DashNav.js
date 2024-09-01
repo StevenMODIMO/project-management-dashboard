@@ -13,7 +13,7 @@ export default function DashNav() {
             </main>
           );
         })}
-        <button className="bg-[#6EC616] p-1 rounded text-white">Create</button>
+        <button className="bg-[#6EC616] p-1 rounded text-white">Create Issue</button>
       </nav>
     </main>
   );
