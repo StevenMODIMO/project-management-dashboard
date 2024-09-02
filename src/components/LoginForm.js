@@ -32,7 +32,7 @@ export default function LoginForm() {
       email,
       password,
       redirect: false,
-      callbackUrl: "http://localhost:3000/dashboard/profile",
+      callbackUrl: "http://localhost:3000/dashboard",
     });
 
     if (res.error) {
