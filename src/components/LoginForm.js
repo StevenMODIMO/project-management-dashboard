@@ -44,7 +44,7 @@ export default function LoginForm() {
       setEmail("");
       setPassword("");
       setLoading(false);
-      router.push("/profile");
+      router.push("/dashboard");
     }
   };
 

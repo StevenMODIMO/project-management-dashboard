@@ -69,7 +69,7 @@ export default function SignupForm() {
         redirect: false,
         callbackUrl: "http://localhost:3000/dashboard",
       });
-      router.push("/profile");
+      router.push("/dashboard");
     }
   };
 

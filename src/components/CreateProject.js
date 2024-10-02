@@ -39,8 +39,7 @@ export default function CreateProject({ setModal }) {
     formData.append("projectName", projectName);
     formData.append("projectImage", projectImage);
 
-    const response = await ("/api/",
-    {
+    const response = await fetch("/api/projects", {
       method: "POST",
       body: formData,
     });
