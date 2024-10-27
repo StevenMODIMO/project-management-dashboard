@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
+// Backdrop that displays a pale dark backgroud for modals and other pop ups.
 export default function Backdrop({ children, setModal }) {
   return (
     <motion.main

@@ -6,6 +6,7 @@ import { CgAsterisk } from "react-icons/cg";
 import { RiAttachment2 } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
 
+// animation variables to control the transition, entering and exiisting of the animated element.
 const dropIn = {
   hidden: {
     scale: 0,

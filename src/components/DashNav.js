@@ -1,3 +1,4 @@
+// Navigation bar for the dashboard once the user as already being authenticated and is interacting with various platform features.
 "use client";
 import Link from "next/link";
 import { dashboardLinks } from "@/lib/data";
